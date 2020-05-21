@@ -1,0 +1,13 @@
+.popup__img-container {
+  width: 550px;
+  min-height: 78vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .popup__img-container {
+    width: 75%;
+  }
+}
