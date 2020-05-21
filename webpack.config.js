@@ -1,18 +1,18 @@
 const webpack = require("webpack");
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackMd5Hash = require("webpack-md5-hash");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // добавили плагин
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// подключаем плагин
 const isDev = process.env.NODE_ENV === "development";
-
+// создаем переменную для development-сборки
 module.exports = {
   entry: { main: "./src/index.js" },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[chunkhash].js",
   },
-
   module: {
     rules: [
       {
@@ -21,14 +21,6 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -41,11 +33,19 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|ico|svg)$/,
         use: [
-          "file-loader?name=../images/[name].[ext]",
+          "file-loader?name=./images/[name].[ext]", // указали папку, куда складывать изображения, относительно dist
           {
             loader: "image-webpack-loader",
             options: {},
           },
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
         ],
       },
       {

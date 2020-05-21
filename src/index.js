@@ -8,13 +8,6 @@ import FormValidator from "./js/formvalidator";
 import Popup from "./js/popup";
 import UserInfo from "./js/userinfo";
 
-console.log("EVERYTHING OKK!!!!");
-
-const numbers = [2, 3, 5];
-const doubledNumbers = numbers.map((number) => number * 2); // Стрелочная функция. Не запнётся ли на ней Internet Explorer
-
-console.log(doubledNumbers);
-
 const popup = document.querySelector(".popup");
 const popupUserCard = document.querySelector(".popup_add-card");
 const userButton = document.querySelector(".user-info__button");

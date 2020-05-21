@@ -2,7 +2,8 @@ module.exports = {
   plugins: [
     require("autoprefixer"),
     require("cssnano")({
-      preset: "default",
+      // подключили cssnano
+      preset: "default", // выбрали настройки по умолчанию
     }),
   ],
 };
