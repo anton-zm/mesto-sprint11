@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(form) {
     this.form = form;
   }
@@ -38,7 +38,7 @@ class FormValidator {
   }
 
   setEventListeners(input) {
-    input.addEventListener("input", event => {
+    input.addEventListener("input", (event) => {
       this.checkInputValidity(event.target);
     });
   }
