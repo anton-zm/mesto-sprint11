@@ -37,11 +37,6 @@ const avaFormButton = document.querySelector(".popup__button_ava");
 const avaForm = document.forms.ava;
 const avaLink = avaForm.elements.user_ava;
 
-const newUserCard = (title, image, likes, owner, id) => {
-  const card = new Card();
-  return card.create(title, image, likes, owner, id);
-};
-
 const api = new Api({
   baseUrl: "https://praktikum.tk/cohort10",
   headers: {
@@ -50,7 +45,12 @@ const api = new Api({
   },
 });
 
-//const cardsAction = new Card();
+const newUserCard = (title, image, likes, owner, id) => {
+  //const card = new Card();
+  const card = new Card("", "", api);
+  return card.create(title, image, likes, owner, id);
+};
+
 const cardList = new CardList(cardsContainer, newUserCard);
 
 const userCardPopup = new Popup(popupUserCard);
@@ -188,7 +188,7 @@ api
   });
 
 closeImagePopup.addEventListener("click", closePopupImg);
-//
+
 userAva.addEventListener("click", function () {
   userAvaPopup.open();
 });
@@ -208,8 +208,7 @@ avaForm.addEventListener("submit", function (event) {
     userAvaPopup.close();
   });
 });
-// console.log(userAva.style.backgroundImage);
-// api.updateAva(avatar);
+
 validProfileForm.setEventListeners(editUserName);
 validProfileForm.setEventListeners(editUserAbout);
 validCardForm.setEventListenersForCard(userTitle, userLink);

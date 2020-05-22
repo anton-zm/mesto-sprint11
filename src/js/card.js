@@ -1,19 +1,20 @@
 export default class Card {
-  constructor(title, image) {
+  constructor(title, image, api) {
     this.title = title;
     this.image = image;
+    this.api = api;
     this.myCard = document.createElement("div");
     this.setEvent = this.setEvent.bind(this);
   }
 
   like(elem) {
-    api.likeCard(elem.closest(".place-card").id);
+    this.api.likeCard(elem.closest(".place-card").id);
     elem.classList.toggle("place-card__like-icon-off");
     elem.classList.add("place-card__like-icon_liked");
   }
 
   deleteLike(elem) {
-    api.deleteLike(elem.closest(".place-card").id);
+    this.api.deleteLike(elem.closest(".place-card").id);
     elem.classList.remove("place-card__like-icon_liked");
     elem.classList.toggle("place-card__like-icon-off");
   }
@@ -26,7 +27,7 @@ export default class Card {
 
   remove(elem) {
     confirm("Вы действительно хотите удалить картинку?");
-    api.deleteCard(elem.id);
+    this.api.deleteCard(elem.id);
     this.myCard.removeEventListener("click", this.setEvent);
     elem.remove();
   }
